@@ -1,0 +1,208 @@
+
+Assignment 2 : Shell Script 
+Que:
+Include following concepts
+Basic Arithmetic
+Conditional Structures, Loops
+Functions
+Arrays
+String Operations
+Command Line Arguments
+Execution of Linux command in shell
+
+
+Problem Statement 1 🡺
+Arithmetic Progression Calculator with Functions and Loops: Create a shell script that calculates the sum of an arithmetic progression. The script should take three command line arguments: the first term, the common difference, and the number of terms. Use a loop to calculate the sum, and a function to handle the arithmetic logic.
+
+Shell Script code : 
+
+if [ $# -lt 3 ]; then      
+    echo "Usage: $0 <first_term> <difference> <number_of_terms>"
+    exit 1
+fi
+
+first_term=$1
+difference=$2
+number_of_terms=$3
+
+sum=0
+
+for ((i = 0; i < number_of_terms; i++)); do
+    sum=$((sum + first_term + i * difference))
+done
+
+echo "Sum of arithmetic progression: $sum"
+
+OUTPUT :
+
+
+Problem Statement 2 🡺
+Even and Odd Numbers in an Array Using Switch Case: Write a script that takes a list of numbers as input (either via command line arguments or a predefined array). Use a switch case to offer two options: one to print all even numbers and another to print all odd numbers. Use loops to check each number.
+
+Shell Script code :
+
+number=(13 65 54 66 98 22 43)
+
+Even(){
+    echo "Even numbers:"
+    for num in "${number[@]}";do
+        if((num % 2 == 0));then
+        echo "$num"
+    fi
+done        
+}
+
+Odd(){
+    echo "Odd numbers: "
+    for num in "${number[@]}";do
+        if((num % 2 != 0));then
+        echo "$num"
+    fi
+done     
+   
+}
+
+echo "Choose option: "
+echo "1.Print Even numbers : "
+echo "2.Print Odd numbers : "
+read -p "Enter your choice (1 or 2): " choice
+
+case $choice in
+    1)Even ;;
+    2)Odd ;;
+    *)echo "Invalid choice ";;
+esac    
+
+
+
+
+
+OUTPUT :
+
+
+
+
+Problem Statement 3 🡺
+Factorial Calculator Using Command Line Arguments and Functions: Write a script that accepts a number as a command line argument and uses a function to calculate its factorial. The function should use a loop to compute the factorial, and then the script should print the result.
+
+Shell Script code :
+
+number=$1
+
+if [ -z "$number" ];then
+    echo "Usage: $0 <number>"
+    exit 1
+fi
+
+factorial=1
+
+for((i=1;i<=number;i++));do
+    factorial=$((factorial * i))
+done
+
+echo "Factorial of $number is: $factorial"
+
+OUTPUT :
+
+
+
+
+Problem Statement 4 🡺
+Batch File Rename Using Arrays and Execution of Linux Commands: Create a shell script that stores a list of filenames (using an array) and renames each file by appending a timestamp to the filename. Use a loop to iterate through the filenames and mv to rename each file. Output the new filenames.
+
+Shell Script code : 
+
+
+files=("file1.txt" "file2.txt" "file3.txt")
+
+timestamp=$(date +%Y%m%d%H%M%S)
+
+for file in "${files[@]}";do
+    if [ -e "$file" ]; then
+        mv "$file" renamed to ${file}_$timestamp 
+        echo "$file" "${file}_$timestamp"
+    else 
+        echo "$file renamed to ${file}_$timestamp"
+    fi
+done
+
+OUTPUT :
+
+
+
+Problem Statement 5 🡺
+Basic Calculator with Menu-Driven Interface (Switch Cases and Functions): Develop a menu-driven calculator script using switch cases. The menu should offer options like addition, subtraction, multiplication, and division. Use functions to handle each operation, and allow the user to input the numbers via the command line. The loop should keep the menu running until the user chooses to exit.
+
+Shell Script code : 
+addition(){
+    echo "Enter two numbers: "
+    read a b
+    echo "Result : $((a + b))"
+
+}
+
+substraction(){
+    echo "Enter two numbers: "
+    read a b
+    echo "Result : $((a - b))"
+
+}
+
+multiplication(){
+    echo "Enter two numbers : "
+    read a b
+    echo "Result : $((a * b))"
+
+}
+
+division(){
+    echo "Enter two number : "
+    read a b
+    if [ "$b" -eq 0];then 
+        echo "Division by zero is not allowed"
+    else  
+        echo "Result : $((a / b))"
+    fi    
+
+}
+
+while true; do
+
+    echo "Calculator Menu: "
+    echo "1. Addition"
+    echo "2. Substraction"
+    echo "3. Multiplication"
+    echo "4: Division"
+    echo "5. Exit"
+    read -p "Enter your choice : " choice
+
+    case $choice in
+        1)addition ;;
+        2) substraction ;;
+        3) multiplication ;;
+        4) division ;;
+        5) echo "Exiting..."; exit 0 ;;
+        *) echo "invalid choice,please try again" ;;
+
+    esac
+done        
+
+
+
+
+OUTPUT : 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
